@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Cadastro Usuario</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+</head>
+<body>
+
+	<div class="page-header">
+		<h1>
+			Cadastro de Noticia 
+		</h1>
+	</div>
+	
+	<form class="form-horizontal" method="POST" action="inserirNoticia" enctype="multipart/form-data" th:object="${noticia}">
+	
+		<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
+		  <div th:each="detailedError : ${#fields.detailedErrors()}">
+		  	<span th:text="${detailedError.message}"> </span>
+		  </div>
+		</div>
+		
+		<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
+		  <span> Noticia salva com sucesso</span>
+		</div>
+	
+	
+		<div class="form-group">
+			<label for="titulo" class="col-sm-2 control-label">Título da Noticia</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="titulo" th:field="*{titulo}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="subtitulo" class="col-sm-2 control-label">Subtitulo</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="subtitulo" th:field="*{subtitulo}"/>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="texto" class="col-sm-2 control-label">Texto</label>
+			<div class="col-sm-10">
+				<textarea class="form-control" rows="3" id = "texto" th:field="*{texto}"> </textarea>
+
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="data" class="col-sm-2 control-label">Data da Publicação</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" id="data" th:field="*{dataNoticia}"/>
+			</div>
+		</div>
+		
+		
+		<div class="form-group">
+			<label for="imagem" class="col-sm-2 control-label">Selecione a imagem da Noticia</label>
+			<div class="col-sm-10">
+				<input type = "file" class="form-control"  id="imagem" name ="imagem"/>
+			</div>
+		</div>	
+		
+		<div class="form-group">
+			<label for="secao" class="col-sm-2 control-label">Escolha a seção dessa notícia</label>
+			<div class="col-sm-2">
+				<select class="form-control" name="secao">
+				 <option th:each="secao : ${todasSecoes}" th:value="${secao.codigo}" th:text="${secao.tituloSecao}"> </option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-default">Enviar</button>
+			</div>
+		</div>
+	</form>
+
+	<script src="/js/bootstrap.min.js">
+		
+	</script>
+</body>
+</html>

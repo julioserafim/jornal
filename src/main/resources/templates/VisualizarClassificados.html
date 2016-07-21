@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Classificados </title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+
+</head>
+<body>
+<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Classificados</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Título Classificado</th>
+						<th>Texto do Classificado</th>
+						<th>Preço inicial</th>
+						<th>Telefone de Contato </th>
+						<th>Melhor Oferta</th>
+						<th>Data da Melhor Oferta</th>
+						<th>Nome do Autor da melhor oferta</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="classificado : ${classificados}">
+						<td th:text="${classificado.tituloClassificado}"></td>
+						<td th:text="${classificado.textoClassificado}"></td>
+						<td th:text="${classificado.precoInicial}"></td>
+						<td th:text="${classificado.telefone}"></td>
+						<td th:text="${classificado.melhorOferta}"></td>
+						<td th:text="${{classificado.dataOferta}}"></td>
+						<td th:text="${classificado.autorMelhorOferta}"></td>
+						
+			<!-- Se usuário online --> <td> <div th:if="${!#strings.isEmpty(mensagem)}"> <a href = "InserirOfertaFormulario.html" th:href="@{http://localhost:8080/inserirOfertaFormulario(codigo=${classificado.codigo})}">Inserir Oferta</a> </div></td>
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+		
+			    
+	
+	
+</body>
+</html>

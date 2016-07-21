@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</head>
+
+
+<body>
+
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Notícia</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Secao da Notícia</th>
+						<th>Data Noticia</th>
+						<th>Título da Noticia</th>
+						<th>Subtítulo da Noticia</th>
+						<th>Texto da Notícia</th>
+						<th>Foto do Jornalista</th>
+						<th>Foto da Noticia</th>
+						
+						
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${secao.tituloSecao}"></td>
+						<td th:text="${{noticia.dataNoticia}}"></td>
+						<td th:text="${noticia.titulo}"></td>
+						<td th:text="${noticia.subtitulo}"></td>
+						<td th:text="${noticia.texto}"></td>
+						<td> <img alt="Foto da Noticia" class="" src="/home/julioserafim/Documents/WEB-UFC/jornal/src/main/webapp/static/images/titulo.png"/> </td>
+						<td> <img alt="" class="" src="/home/julioserafim/Documents/WEB-UFC/jornal/src/main/webapp/static/images/${jornalista.email}.png"/> </td>	
+					</tr>
+
+					<!--  SE USUÁRIO, COMENTE AQUI -->
+
+				</tbody>
+			</table>
+			
+					COMENTÁRIOS:
+					<div th:each="comentario:${comentarios}">
+						<span th:text="${comentario.autor}"> </span> 
+						<span th:text="${comentario.texto}"> </span>
+					</div>
+
+
+			<div th:if="${!#strings.isEmpty(mensagem)}"> <!-- Usuário insere comentátio -->
+				<form class="form-horizontal" method="POST" action="inserirComentario" th:object="${comentario}">
+				
+					<div class="form-group">
+						<label for="texto" class="col-sm-2 control-label">Insira seu comentário</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="3" id="texto" name = "texto"> </textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+					  <div class="col-sm-offset-2 col-sm-10">
+					     <input type="hidden" name="noticia" th:value="${noticia.codigo}"/>
+				         <button type="submit" class="btn btn-default">Enviar</button>
+			          </div>
+		            </div>
+
+				</form>
+			
+			</div>
+			
+			
+			<div th:if="${!#strings.isEmpty(excluirNoticia)}"> <!-- Editor exclui noticia -->
+				<form class="form-horizontal" method="POST" action="apagarNoticia">
+					
+					<div class="form-group">
+					  <div class="col-sm-offset-2 col-sm-10">
+					     <input type="hidden" name="noticia" th:value="${noticia.codigo}"/>
+				         <button type="submit" class="btn btn-default">Excluir Noticia</button>
+			          </div>
+		            </div>
+
+				</form>
+			
+			</div>
+			
+			
+			
+			<div th:if="${!#strings.isEmpty(excluirNoticiaJornalista)}"> <!-- Jornalista exclui noticia -->
+				<form class="form-horizontal" method="POST" action="apagarNoticia">
+					
+					<div class="form-group">
+					  <div class="col-sm-offset-2 col-sm-10">
+					     <input type="hidden" name="noticia" th:value="${noticia.codigo}"/>
+				         <button type="submit" class="btn btn-default">Excluir Noticia</button>
+			          </div>
+		            </div>
+
+				</form>
+			
+			</div>
+
+		</div>
+	</div>
+
+
+	<script src="/js/bootstrap.min.js">
+		
+	</script>
+
+
+</body>
+</html>

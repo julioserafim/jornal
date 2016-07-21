@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+</head>
+<body>
+
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Seções do Jornal</h1>
+					<li role="presentation"><a href="verClassificados">Ver Classificados</a></li>
+					<li role="presentation"><a href="logout">Sair</a></li>
+					
+			
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nome da Seção</th>
+						<th>Descrição da Seção</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="secao : ${secoes}">
+						<td th:text="${secao.tituloSecao}"></td>
+						<td th:text="${secao.descricaoSecao}"></td>
+						<td> <a href = "ManchetesDaSecao.html" th:href="@{http://localhost:8080/verManchetesDaSecao(codigo=${secao.codigo})}">Ver manchetes dessa seção</a> </td>
+						
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<script src="/js/bootstrap.min.js">
+		
+	</script>
+
+</body>
+
+</html>

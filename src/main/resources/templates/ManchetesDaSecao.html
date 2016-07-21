@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+</head>
+
+
+<body>
+
+	<div class="panel panel-default" style="margin: 10px">
+		<div class="panel-heading">
+			<h1 class="panel-title">Manchetes</h1>
+		</div>
+		<div class="panel-body">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Título da Notícia</th>
+						<th>Subtítulo da Noticia</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="noticia : ${noticias}">
+						<td th:text="${noticia.titulo}"></td>
+						<td th:text="${noticia.subtitulo}"></td>
+						<td> <a href="NoticiasDaSecao.html" th:href="@{http://localhost:8080/verNoticiaDaSecao(codigo=${noticia.codigo})}">Ler mais sobre esta notícia</a> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<script src="/js/bootstrap.min.js">
+		
+	</script>
+
+
+	
+
+
+
+</body>
+</html>
